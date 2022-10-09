@@ -7,14 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers, authedUser } from "../../slices/usersSlice";
 import { useNavigate } from 'react-router-dom';
 import { getQuestions } from "../../slices/questionSlice";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const Login = () => {
     const [id, setID] = useState("");
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const users = useSelector((state) => state.users);
     const questions = useSelector((state) => state.questions);
+    const { login } = useAuth();
 
     useEffect(() => {
         if (!users.listUser) {
@@ -33,7 +35,10 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(authedUser(id));
-        navigate('/')
+        login({
+            receiveUser: users.receiveUser,
+          });
+          navigate("/home")
     }
 
 

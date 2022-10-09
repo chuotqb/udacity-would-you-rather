@@ -6,14 +6,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, Outlet,useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { unAuthedUser } from "../../slices/usersSlice";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const Header = () => {
     const users = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { user, logout } = useAuth();
 
     const handleLogout = () => {
         dispatch(unAuthedUser());
+        logout();
         navigate('/login');
         
     }
@@ -31,7 +35,7 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <Nav.Link as={NavLink} to="/" className="nav-link active">Home</Nav.Link>
+                                <Nav.Link as={NavLink} to="/home" className="nav-link active">Home</Nav.Link>
                             </li>
                             <li className="nav-item">
                                 <Nav.Link as={NavLink} to="/add" className="nav-link">New Question</Nav.Link>

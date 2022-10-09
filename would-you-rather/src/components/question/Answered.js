@@ -7,16 +7,17 @@ const Answered = () => {
     const receiveUser = useSelector((state) => state.users.receiveUser);
     const listQuestion = useSelector((state) => state.questions.listQuestion);
     const ListAnsweredQuestion = useMemo(() => {
-        return Object.values(listQuestion).filter((question) =>
+        return listQuestion && Object.values(listQuestion).sort((a, b) => b.timestamp - a.timestamp).filter((question) =>
             [...question.optionOne.votes, ...question.optionTwo.votes].includes(
                 receiveUser.id
             )
         )
     }, [listQuestion]);
+
     return (
         <div>
             {
-                ListAnsweredQuestion.map((question) => (
+                ListAnsweredQuestion && ListAnsweredQuestion.map((question) => (
                     <div key={question.id} >
                         <ListAnswered {...question} />
                     </div>

@@ -33,7 +33,7 @@ const FormAddQuestion = () => {
         await dispatch(
             saveQuestion(question)
         )
-        navigate("/")
+        navigate("/home")
     }
 
 

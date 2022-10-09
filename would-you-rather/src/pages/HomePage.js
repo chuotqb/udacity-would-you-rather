@@ -4,9 +4,11 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import UnAnswered from "../components/question/UnAnswered";
 import Answered from "../components/question/Answered";
+import { useSelector } from "react-redux";
 
 
 const HomePage = () => {
+    const users = useSelector((state) => state.users);
     return (
         <Card style={{ width: '50rem' }} className="mx-auto mt-5">
             <Tabs
