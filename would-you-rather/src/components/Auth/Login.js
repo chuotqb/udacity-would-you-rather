@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers, authedUser } from "../../slices/usersSlice";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getQuestions } from "../../slices/questionSlice";
-import { useAuth } from "./useAuth";
 
 
 
@@ -18,6 +17,7 @@ const Login = () => {
     const users = useSelector((state) => state.users);
     const questions = useSelector((state) => state.questions);
     const { state } = useLocation();
+    console.log(state);
 
     useEffect(() => {
         if (!users.listUser) {

@@ -1,10 +1,7 @@
 import React, {useState} from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import { useAuth } from "./useAuth";
 import { useSelector } from "react-redux";
-import { createContext } from "react";
 
-const authContext = React.createContext();
 
 const RequireAuth = ({ children }) => {
     const users = useSelector((state) => state.users);
@@ -13,3 +10,4 @@ const RequireAuth = ({ children }) => {
 }
 
 export default RequireAuth;
+

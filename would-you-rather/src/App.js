@@ -10,6 +10,7 @@ import AnsweredItem from './components/question/AnsweredItem';
 import { useSelector } from 'react-redux';
 import NotFoundPage from "./pages/NotFoundPage";
 import RequireAuth from './components/Auth/RequireAuth';
+import { AuthProvider } from './components/Auth/AuthProvider';
 
 const App = () => {
   const users = useSelector((state) => state.users);
@@ -27,14 +28,16 @@ const App = () => {
 
     <div className="App">
       <Header />
+      <AuthProvider>
       <Routes>
-        <Route path='/home' element={<RequireAuth><HomePage value={users.receiveUser}/></RequireAuth>} />
-        <Route path='/add' element={<RequireAuth><NewQuestionPage value={users.receiveUser}/></RequireAuth>} />
-        <Route path='/leaderboard' element={<RequireAuth><LeaderBoardPage value={users.receiveUser}/></RequireAuth>} />
-        <Route path='/questions/:question_id' element={<RequireAuth><AnsweredItem value={users.receiveUser}/></RequireAuth>} />
+        <Route path='/home' element={<RequireAuth ><HomePage /></RequireAuth>} />
+        <Route path='/add' element={<RequireAuth ><NewQuestionPage /></RequireAuth>} />
+        <Route path='/leaderboard' element={<RequireAuth ><LeaderBoardPage/></RequireAuth>} />
+        <Route path='/questions/:question_id' element={<RequireAuth ><AnsweredItem /></RequireAuth>} />
         <Route path='/login' element={<AuthPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </AuthProvider>     
     </div>
 
 
