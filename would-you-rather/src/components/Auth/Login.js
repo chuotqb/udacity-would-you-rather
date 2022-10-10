@@ -5,9 +5,10 @@ import Button from 'react-bootstrap/Button';
 import logo from '../../logo.svg';
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, authedUser } from "../../slices/usersSlice";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getQuestions } from "../../slices/questionSlice";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "./useAuth";
+
 
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
     const navigate = useNavigate();
     const users = useSelector((state) => state.users);
     const questions = useSelector((state) => state.questions);
-    const { login } = useAuth();
+    const { state } = useLocation();
 
     useEffect(() => {
         if (!users.listUser) {
@@ -35,10 +36,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(authedUser(id));
-        login({
-            receiveUser: users.receiveUser,
-          });
-          navigate("/home")
+        navigate(state?.path || "/home");
     }
 
 
@@ -59,7 +57,6 @@ const Login = () => {
                         as="select"
                         label="Choose your account"
                     >
-                        <option value="">Select User</option>
                         {
                             users.listUser && Object.values(users.listUser).map(user => {
                                 return (
@@ -70,7 +67,7 @@ const Login = () => {
                             })
                         }
                     </Form.Select>
-                    <Button className="mt-2 w-100" variant="success" onClick={handleSubmit}>Sign In</Button>
+                    <Button className="mt-2 w-100" variant="success" onClick={handleSubmit} >Sign In</Button>
                 </Card.Text>
             </Card.Body>
         </Card >

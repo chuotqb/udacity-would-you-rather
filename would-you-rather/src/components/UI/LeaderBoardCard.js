@@ -4,11 +4,21 @@ import { useSelector } from "react-redux";
 
 const LeaderBoardCard = () => {
     const users = useSelector((state) => state.users.listUser);
+    
+    const handleListBoard = () => {
+        const leaderBoardSort = Object.values(users).map(user => ({
+            ...user,
+            questionCount: Object.values(user.questions).length,
+            answerCount: Object.values(user.answers).length,
+        })).sort((a, b) => (a.questionCount + a.answerCount) - (b.questionCount + b.answerCount))
+            .reverse()
+        return leaderBoardSort;
+    }
 
     return (
         <>
             {
-                users && Object.values(users).map((user) => (
+                handleListBoard().map((user) => (
                     <Card key={user.id} >
                         <Card.Body className="row" key={user.id}>
                             <div className="col-3 d-flex justify-content-center">

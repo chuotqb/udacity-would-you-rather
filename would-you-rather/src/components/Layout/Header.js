@@ -6,18 +6,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, Outlet,useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { unAuthedUser } from "../../slices/usersSlice";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../Auth/useAuth";
 
 
 const Header = () => {
     const users = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user, logout } = useAuth();
+    const { authed, logout } = useAuth();
 
     const handleLogout = () => {
         dispatch(unAuthedUser());
-        logout();
         navigate('/login');
         
     }

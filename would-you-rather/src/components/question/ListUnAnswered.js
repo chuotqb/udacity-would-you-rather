@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { saveQuestionAnswer } from "../../slices/questionSlice";
+import { useNavigate } from "react-router-dom"
 
 const ListUnAnswered = (props) => {
     const [show, setShow] = useState(false);
@@ -13,6 +14,7 @@ const ListUnAnswered = (props) => {
     const users = useSelector((state) => state.users);
     const [answer, setAnswer] = useState({ typeAnswer: "", another: "another" });
     const { typeAnswer } = answer;
+    const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -32,6 +34,7 @@ const ListUnAnswered = (props) => {
         dispatch(
             saveQuestionAnswer({ authedUser: users.receiveUser.id, qid: id, answer: typeAnswer })
         )
+        navigate(`/questions/${id}`)
     }
 
     return (

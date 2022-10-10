@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 
 const HomePage = () => {
-    const users = useSelector((state) => state.users);
     return (
         <Card style={{ width: '50rem' }} className="mx-auto mt-5">
             <Tabs
