@@ -16,8 +16,6 @@ const Login = () => {
     const navigate = useNavigate();
     const users = useSelector((state) => state.users);
     const questions = useSelector((state) => state.questions);
-    const { state } = useLocation();
-    console.log(state);
 
     useEffect(() => {
         if (!users.listUser) {
@@ -36,7 +34,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(authedUser(id));
-        navigate(state?.path || "/home");
+        navigate(-1);
     }
 
 
@@ -57,6 +55,7 @@ const Login = () => {
                         as="select"
                         label="Choose your account"
                     >
+                        <option value="">Select User</option>
                         {
                             users.listUser && Object.values(users.listUser).map(user => {
                                 return (

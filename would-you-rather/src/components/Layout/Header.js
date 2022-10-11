@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, Outlet,useNavigate } from "react-router-dom";
+import { Link, Outlet,useNavigate,useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { unAuthedUser } from "../../slices/usersSlice";
 
@@ -15,7 +15,7 @@ const Header = () => {
 
     const handleLogout = () => {
         dispatch(unAuthedUser());
-        navigate('/login');
+        navigate('/home');
         
     }
 

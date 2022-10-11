@@ -8,7 +8,8 @@ export const getUsers = createAsyncThunk("users/getUsers", async () => {
 const initialState = {
     listUser: undefined,
     loading: false,
-    receiveUser: undefined
+    receiveUser: undefined,
+    isAuth: false
 }
 
 const usersSlice = createSlice({
@@ -17,9 +18,11 @@ const usersSlice = createSlice({
     reducers: {
         authedUser: (state, action) => {
             state.receiveUser = state.listUser[action.payload];
+            state.isAuth = true;
         },
         unAuthedUser: (state) => {
             state.receiveUser = undefined;
+            state.isAuth = false;
         }
     },
     extraReducers: (builder) => {

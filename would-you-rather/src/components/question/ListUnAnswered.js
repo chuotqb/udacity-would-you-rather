@@ -1,42 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
-import { useSelector, useDispatch } from 'react-redux'
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import { saveQuestionAnswer } from "../../slices/questionSlice";
+import { useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom"
 
 const ListUnAnswered = (props) => {
-    const [show, setShow] = useState(false);
-    const dispatch = useDispatch();
-    const { id, author, optionOne, optionTwo } = props;
+    const { id, author, optionOne } = props;
     const users = useSelector((state) => state.users);
-    const [answer, setAnswer] = useState({ typeAnswer: "", another: "another" });
-    const { typeAnswer } = answer;
+    
     const navigate = useNavigate();
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => {
-        setShow(true);
-        setAnswer("");
-    }
-
-    const handleChange = e => {
-        e.persist();
-        setAnswer(prevState => ({
-            ...prevState,
-            typeAnswer: e.target.value
-        }));
-    };
-
-    const onSubmit = () => {
-        dispatch(
-            saveQuestionAnswer({ authedUser: users.receiveUser.id, qid: id, answer: typeAnswer })
-        )
+    const onViewQuestion = () => {
         navigate(`/questions/${id}`)
     }
 
+   
     return (
         <>
             <Card className="container">
@@ -51,12 +28,12 @@ const ListUnAnswered = (props) => {
                             <Card.Text className="row">
                                 {optionOne === undefined ? '' : optionOne.text} Or ...
                             </Card.Text>
-                            <Button variant="outline-success" className="row mx-auto" onClick={handleShow}>View Poll</Button>
+                            <Button variant="outline-success" className="row mx-auto" onClick={onViewQuestion}>View Poll</Button>
                         </div>
                     </div>
                 </Card.Body>
             </Card>
-            <Modal show={show} onHide={handleClose}>
+            {/* <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>{users.listUser[author] === undefined ? '' : users.listUser[author].name}ask:</Modal.Title>
                 </Modal.Header>
@@ -99,7 +76,7 @@ const ListUnAnswered = (props) => {
                         Submit
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
         </>
     )
 }

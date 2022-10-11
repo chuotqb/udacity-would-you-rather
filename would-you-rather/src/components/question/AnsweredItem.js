@@ -22,7 +22,7 @@ const AnsweredItem = () => {
                 <div className="col-8">
                     <div className="row">
                         <h3 className="row">Results</h3>
-                        <div className="row border border-primary rounded">
+                        <div className="row border border-primary rounded" style={{ backgroundColor: thisQuestion.author !== undefined && users.receiveUser.answers[params.question_id] === 'optionOne' ? '#e3f8f9' : '#ffffff' }}>
                             <h5 className="row text-success mt-2">
                                 {thisQuestion.optionOne === undefined ? '' : thisQuestion.optionOne.text}
                             </h5>
@@ -31,7 +31,7 @@ const AnsweredItem = () => {
                             </div>
                             <p className="fw-bold text-center mt-2">{thisQuestion.optionOne.votes.length} out of {sumVote} votes</p>
                         </div>
-                        <div className="row border border-primary rounded mt-3 mb-2">
+                        <div className="row border border-primary rounded mt-3 mb-2" style={{ backgroundColor: thisQuestion.author !== undefined && users.receiveUser.answers[params.question_id] === 'optionTwo' ? '#e3f8f9' : '#ffffff' }}>
                             <h5 className="row text-success mt-2">
                                 {thisQuestion.optionTwo === undefined ? '' : thisQuestion.optionTwo.text}
                             </h5>
