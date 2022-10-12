@@ -15,7 +15,7 @@ const Header = () => {
 
     const handleLogout = () => {
         dispatch(unAuthedUser());
-        navigate('/home');
+        navigate('/');
         
     }
 
@@ -32,7 +32,7 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <Nav.Link as={NavLink} to="/home" className="nav-link active">Home</Nav.Link>
+                                <Nav.Link as={NavLink} to="/" className="nav-link active">Home</Nav.Link>
                             </li>
                             <li className="nav-item">
                                 <Nav.Link as={NavLink} to="/add" className="nav-link">New Question</Nav.Link>

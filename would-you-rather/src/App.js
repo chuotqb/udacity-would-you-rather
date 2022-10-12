@@ -45,10 +45,11 @@ const App = () => {
         isAuth && <Header />
       }
       <Routes>
-        <Route path='/home' element={isAuth ? <HomePage /> : <AuthPage />} />
+        <Route path='/' element={isAuth ? <HomePage /> : <AuthPage />} />
         <Route path='/add' element={isAuth ? <NewQuestionPage /> : <AuthPage />} />
         <Route path='/leaderboard' element={isAuth ? <LeaderBoardPage /> : <AuthPage />}  />
         <Route path='/questions/:question_id' element={isAuth ? <PollPage /> : <AuthPage />}  />
+        <Route path='/login' element={<AuthPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
