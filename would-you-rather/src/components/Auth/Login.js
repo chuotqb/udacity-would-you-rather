@@ -16,7 +16,7 @@ const Login = () => {
     const navigate = useNavigate();
     const users = useSelector((state) => state.users);
     const questions = useSelector((state) => state.questions);
-    // const state = useLocation();
+    const {state} = useLocation();
 
     useEffect(() => {
         if (!users.listUser) {
@@ -35,7 +35,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(authedUser(id));
-        navigate(-1);
+        navigate(state.path || "/");
     }
 
 
